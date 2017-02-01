@@ -1,6 +1,13 @@
 import React from 'react'
 
 const VideoDetail = ({video}) => {
+  // this is here so we don't get `cannot read property id of undefined`
+  // it will load a temporary div until the parent component is able
+  // to fetch a video from the api
+  if (!video){
+    return <div>Loading...</div>
+  }
+
   const videoId = video.id.videoId
   const url = `https://www.youtube.com/embed/${videoId}` //interpolation
   // const url = 'https://www.youtube.com/embed/' + videoId
